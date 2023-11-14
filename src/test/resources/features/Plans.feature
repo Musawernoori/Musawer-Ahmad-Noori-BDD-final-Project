@@ -5,6 +5,8 @@ Feature: Validate Plans elements
     Then navigate and click login button
     Then enter username as "supervisor" and password as "tek_supervisor"
     Then navigate and click sign in button
+    Then click on Plans
+
 
 
   @US_8

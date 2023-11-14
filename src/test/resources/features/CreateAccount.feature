@@ -12,7 +12,7 @@ Feature: Validate Create Primary Accounts Elements
   Scenario: Filling up the sign up form validation
     Then click on Create Primary Account Button
     And the form title should be "Create Primary Account Holder"
-    When enter Email Address as "Neymar6@gmail.com"
+    When enter Email Address as "Neymar678@gmail.com"
     When select title as "Mr."
     When enter First Name as "Tika"
     When enter Last Name as "BBB"
@@ -22,7 +22,7 @@ Feature: Validate Create Primary Accounts Elements
     When enter Date Of Birth as "01/01/2021"
     Then click on Create Account
     And signUp page title should be "Sign up your account"
-    Then validate created email should be "Neymar6@gmail.com"
+    Then validate created email should be "Neymar678@gmail.com"
 
     @US_4
     Scenario: Validate error message when creating account with existing email address
