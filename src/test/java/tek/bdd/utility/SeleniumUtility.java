@@ -14,24 +14,14 @@ import java.util.List;
 
 public class SeleniumUtility extends BaseSetup {
 
+
     private WebDriverWait getWait() {
-        return new WebDriverWait(getDriver(), Duration.ofMinutes(1));
+        return new WebDriverWait(getDriver(), Duration.ofSeconds(20));
     }
 
     private WebElement waitUntilVisibilityOfElement(By locator) {
+        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         return getWait().until(ExpectedConditions.visibilityOfElementLocated(locator));
-    }
-
-    private WebElement waitUntilElementClickable(By locator) {
-        return getWait().until(ExpectedConditions.elementToBeClickable(locator));
-    }
-
-    private List<WebElement> waitUntilVisibilityOfAllElement(By locator) {
-        return getWait().until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
-    }
-
-    public void clickOnElement(By locator) {
-        waitUntilElementClickable(locator).click();
     }
 
     public String getElementText(By locator) {
@@ -39,9 +29,22 @@ public class SeleniumUtility extends BaseSetup {
         return element.getText();
     }
 
+    public byte[] takeScreenshot() {
+        TakesScreenshot screenshot = (TakesScreenshot) getDriver();
+        return screenshot.getScreenshotAs(OutputType.BYTES);
+    }
+
     public boolean isElementEnabled(By locator) {
         WebElement element = waitUntilVisibilityOfElement(locator);
         return element.isEnabled();
+    }
+
+    private WebElement waitUntilElementClickable(By locator) {
+        return getWait().until(ExpectedConditions.elementToBeClickable(locator));
+    }
+
+    public void clickOnElement(By locator) {
+        waitUntilElementClickable(locator).click();
     }
 
     public void enterValue(By locator, String text) {
@@ -49,26 +52,30 @@ public class SeleniumUtility extends BaseSetup {
         element.sendKeys(text);
     }
 
-    public List<WebElement> getListOfElements(By locator) {
-        return waitUntilVisibilityOfAllElement(locator);
+    private List<WebElement> waitUntilVisibilityOfAllElements(By locator) {
+        return getWait().until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
     }
 
-    public byte[] takeScreenshot() {
-        //Somehow attached screenshot of the failure
-        //Step 1) Take Screenshot with Selenium
-        TakesScreenshot screenshot = (TakesScreenshot) getDriver();
-        //for cucumber reports Output Type should Byte[]
-        return screenshot.getScreenshotAs(OutputType.BYTES);
+    public List<WebElement> getListOfElements(By locator) {
+        return waitUntilVisibilityOfAllElements(locator);
+    }
+
+    public int getNumberOfRows(By locator) {
+        return waitUntilVisibilityOfAllElements(locator).size();
     }
 
     public void selectFromDropDown(By locator, String option) {
         List<WebElement> itemPerPageOptions = getListOfElements(locator);
 
-        for(WebElement element : itemPerPageOptions) {
+        for (WebElement element : itemPerPageOptions) {
             String text = element.getText();
             if (text.contains(option)) {
                 element.click();
             }
+
+            }
+
+
         }
     }
-}
+

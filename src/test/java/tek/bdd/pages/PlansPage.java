@@ -1,5 +1,6 @@
 package tek.bdd.pages;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 
 public class PlansPage {
@@ -13,5 +14,6 @@ public class PlansPage {
     public static By getTablePlan4RowsData(int row, int column){
         return By.xpath("//table/tbody/tr["+row+"]/td["+column+"+]");
     }
+    public final static By table_Row_Locator = By.xpath("//div/table/thead/tr/th[2]");
 
 }

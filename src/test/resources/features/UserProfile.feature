@@ -1,8 +1,5 @@
 Feature: Validate user profile elements
-  #User Profile:
-  # Scenario 1)
-  #Navigate to login and enter valid CSR credentials and navigate to Customer Service Portal
-  # then click on profile button validate information is in Profile Side Drawer is correct.
+
 
   Background: Successful Login
     Then navigate and click login button
@@ -16,10 +13,7 @@ Feature: Validate user profile elements
     And logout button should be "enabled"
 
 
-    #Scenario 2)
-    #Navigate to login and enter valid CSR credentials and navigate to Customer Service
-    # Portal then click on profile button and then click on Logout button make sure user
-    # navigate to home page
+
   @US_7
   Scenario: validate sign in and logout functionality
     Then click on logout Button

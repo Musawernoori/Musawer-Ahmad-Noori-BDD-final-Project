@@ -43,15 +43,15 @@ public class PlansSteps extends SeleniumUtility {
 
     }
 
-    @Then("validate data of 4 rows")
-    public void validateDataOf4Rows(DataTable dataTable){
-        List<List<String>> tableAsList = dataTable.asLists();
+    @Then("validate {int} row of data is present")
+    public void validateDataOf4Rows(int expectedSize){
+        int actualSize = getNumberOfRows(PlansPage.table_Row_Locator);
+        Assert.assertEquals("Validate number of table rows",
+                expectedSize,
+                actualSize);
 
-        for(int row=0; row < tableAsList.size(); row++)
-            for (int column = 0; column < tableAsList.size(); column++){
 
-            }
-        List<WebElement> tableElements = getListOfElements(PlansPage.getTablePlan4RowsData( + 1, + 1));
+
     }
 
 }

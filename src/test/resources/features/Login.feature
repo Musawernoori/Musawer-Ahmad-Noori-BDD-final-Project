@@ -1,10 +1,5 @@
 Feature: Validate Login elements
-  #Login:
-  #Scenario 1)
-  #Navigate to login by clicking on Login button and enter valid csr user
-  #Username: supervisor
-  #Password: tek_supervisor
-  #And validate user navigate to Customer Service Portal
+
 
   @US_5
   Scenario: Verify login page and successful login
@@ -25,5 +20,3 @@ Feature: Validate Login elements
       | username    | password        | errorMessage |
       | supervisorr | tek_supervisor  | ERROR        |
       | supervisor  | ttek_supervisor | ERROR        |
-#User supervisorr not found
-  #Password not matched
